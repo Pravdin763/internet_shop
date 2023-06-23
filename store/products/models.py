@@ -11,10 +11,10 @@ class ProductCategory(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=250)
     image = models.ImageField(upload_to='products_images')
-    price = models.DecimalField(decimal_places=2, max_digits=6)         # 1 сколько знаков ПОСЛЕ запятой, 2 сколько знаков ПЕРЕД запятой
+    price = models.DecimalField(decimal_places=2, max_digits=8)         # 1 сколько знаков ПОСЛЕ запятой, 2 сколько знаков ПЕРЕД запятой
     quantity = models.PositiveIntegerField(default=0)
     description = models.TextField()
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.name} {self.price} {self.category}'
+        return f'{self.name} {self.price} {self.category.name}'
